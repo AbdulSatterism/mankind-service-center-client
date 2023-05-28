@@ -3,7 +3,7 @@ import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile, emailVerify } = useContext(AuthContext);
     const [error, setError] = useState('')
 
     const handleSignup = (event) => {
@@ -18,12 +18,39 @@ const Signup = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                setError('')
+                handleUpdateUserProfile(name);
+                handleEmailVerification();
+                alert("please verify your email address")
+                setError('');
             })
             .catch((err) => {
                 const errorMessage = err.message;
                 setError(errorMessage)
             });
+    }
+
+    const handleUpdateUserProfile = (name) => {
+        const profile = {
+            displayName: name
+        };
+        updateUserProfile(profile)
+            .then(() => {
+
+            })
+            .catch(err => {
+                const errorMessage = err.message;
+                setError(errorMessage)
+            })
+    };
+
+    const handleEmailVerification = () => {
+        emailVerify()
+            .then(() => {
+
+            })
+            .catch(err => {
+                setError(err.message)
+            })
     }
 
     return (

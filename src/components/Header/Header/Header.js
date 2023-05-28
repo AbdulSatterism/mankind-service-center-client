@@ -5,15 +5,31 @@ import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 
 const Header = () => {
-    const { user } = useContext(AuthContext)
-    const navItems = <>
+    const { user, logOutUser } = useContext(AuthContext);
 
+
+    const handleLogOut = () => {
+        logOutUser()
+            .then(() => { })
+            .catch(() => { })
+    }
+
+    const navItems = <>
         <li className='font-semibold '><Link to='/'>Home</Link></li>
         <li className='font-semibold '><Link to='/'>Events</Link></li>
         <li className='font-semibold '><Link to='/'>Blog</Link></li>
         <li className='font-semibold '><Link to='/'>About</Link></li>
-        <li className='font-semibold '><Link to='/login'>Login</Link></li>
-        <li className='font-semibold '><Link to='/signup'>Signup</Link></li>
+        {
+            user?.uid ?
+                <>
+                    <li onClick={handleLogOut} className='font-semibold '><Link >Logout</Link></li>
+                </>
+                :
+                <>
+                    <li className='font-semibold '><Link to='/login'>Login</Link></li>
+                    <li className='font-semibold '><Link to='/signup'>Signup</Link></li>
+                </>
+        }
     </>
 
 
@@ -39,7 +55,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end ">
-                    <Link to='/user' className='btn mr-2'>{user?.name}</Link>
+                    <Link to='/user' className='font-bold mr-2'>{user?.displayName}</Link>
                     <Link to='/admin' className='btn'>Admin</Link>
 
                 </div>

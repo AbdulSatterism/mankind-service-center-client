@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const { signInUser } = useContext(AuthContext);
-    const [error, setError] = useState('')
+    const { signInUser, setLoading } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/'
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -16,11 +19,21 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                setError('')
+                setError('');
+                if (user.emailVerified) {
+                    navigate(from, { replace: true });
+                }
+                else {
+                    alert("your email not verify yet!!! please verify your email")
+                }
+
             })
             .catch(err => {
                 const errorMessage = err.message;
                 setError(errorMessage)
+            })
+            .finally(() => {
+                setLoading(false)
             })
     }
 
