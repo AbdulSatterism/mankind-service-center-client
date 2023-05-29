@@ -17,15 +17,31 @@ const Login = () => {
         signInUser(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                const currentUser = { email: user?.email };
                 form.reset();
                 setError('');
-                if (user.emailVerified) {
-                    navigate(from, { replace: true });
-                }
-                else {
-                    alert("your email not verify yet!!! please verify your email")
-                }
+
+                //jwt get 
+                fetch(`http://localhost:5000/jwt`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data)
+                        //local storage is the not best place for jwt
+                        localStorage.setItem('msc-token', data.token);
+
+                        if (user.emailVerified) {
+                            // navigate(from, { replace: true });
+                        }
+                        else {
+                            alert("your email not verify yet!!! please verify your email")
+                        }
+                    })
 
             })
             .catch(err => {

@@ -30,6 +30,7 @@ const AuthProvider = ({ children }) => {
 
     const logOutUser = () => {
         setLoading(true)
+        localStorage.removeItem('msc-token')
         return signOut(auth);
     }
 
