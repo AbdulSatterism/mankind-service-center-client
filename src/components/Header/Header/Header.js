@@ -17,7 +17,7 @@ const Header = () => {
     const navItems = <>
         <li className='font-semibold '><Link to='/'>Home</Link></li>
         <li className='font-semibold '><Link to='/'>Events</Link></li>
-        <li className='font-semibold '><Link to='/'>Blog</Link></li>
+        <li className='font-semibold '><Link to='/myservice'>My Service</Link></li>
         <li className='font-semibold '><Link to='/'>About</Link></li>
         {
             user?.uid ?

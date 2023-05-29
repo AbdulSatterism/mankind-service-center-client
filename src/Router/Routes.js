@@ -1,6 +1,9 @@
 import Main from "../Layout/Main";
+import Admin from "../components/Admin/Admin/Admin";
+import Checkout from "../components/Checkout/Checkout/Checkout";
 import Home from "../components/Home/Home/Home";
 import Login from "../components/Login/Login/Login";
+import MyService from "../components/MyService/MyService/MyService";
 import Signup from "../components/Signup/Signup/Signup";
 
 
@@ -15,6 +18,19 @@ const routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/checkout/:id',
+                element: <Checkout></Checkout>,
+                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+            },
+            {
+                path: '/myservice',
+                element: <MyService></MyService>
+            },
+            {
+                path: '/admin',
+                element: <Admin></Admin>
             },
             {
                 path: "/login",
