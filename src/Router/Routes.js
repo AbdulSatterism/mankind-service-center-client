@@ -5,6 +5,7 @@ import Home from "../components/Home/Home/Home";
 import Login from "../components/Login/Login/Login";
 import MyService from "../components/MyService/MyService/MyService";
 import Signup from "../components/Signup/Signup/Signup";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -21,16 +22,22 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/checkout/:id',
-                element: <Checkout></Checkout>,
+                element: <PrivateRoute>
+                    <Checkout></Checkout>
+                </PrivateRoute>,
                 loader: ({ params }) => fetch(`https://mankind-service-center-server.onrender.com/services/${params.id}`)
             },
             {
                 path: '/myservice',
-                element: <MyService></MyService>
+                element: <PrivateRoute>
+                    <MyService></MyService>
+                </PrivateRoute>
             },
             {
                 path: '/admin',
-                element: <Admin></Admin>
+                element: <PrivateRoute>
+                    <Admin></Admin>
+                </PrivateRoute>
             },
             {
                 path: "/login",
