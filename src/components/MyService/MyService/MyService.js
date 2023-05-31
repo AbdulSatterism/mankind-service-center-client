@@ -19,8 +19,9 @@ const MyService = () => {
                 return res.json()
             })
             .then(data => {
-                setMyservice(data);
                 // console.log(data, "from email")
+                setMyservice(data);
+
             })
     }, [user?.email, logOutUser]);
 
@@ -44,8 +45,8 @@ const MyService = () => {
 
     return (
         <div className='my-24'>
-            <h2 className="text-5xl mb-6">You have {myservice?.length} orders</h2>
-            <div className="overflow-x-auto w-full">
+            <h2 className="mb-6 text-5xl">You have {myservice?.length} orders</h2>
+            <div className="w-full overflow-x-auto">
                 <table className="table w-full">
                     <tbody>
 
