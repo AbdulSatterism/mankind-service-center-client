@@ -36,7 +36,7 @@ const Login = () => {
                         localStorage.setItem('msc-token', data.token);
 
                         if (user.emailVerified) {
-                            // navigate(from, { replace: true });
+                            navigate(from, { replace: true });
                         }
                         else {
                             alert("your email not verify yet!!! please verify your email")
@@ -54,9 +54,9 @@ const Login = () => {
     }
 
     return (
-        <form onSubmit={handleLogin} className="hero min-h-screen lg:flex-row bg-base-200">
-            <div className="hero-content flex-col ">
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <form onSubmit={handleLogin} className="min-h-screen hero lg:flex-row bg-base-200">
+            <div className="flex-col hero-content ">
+                <div className="flex-shrink-0 w-full max-w-sm shadow-2xl card bg-base-100">
                     <div className="card-body">
                         <h1 className="text-3xl font-bold">Login now!</h1>
                         <div className="form-control">
@@ -76,10 +76,10 @@ const Login = () => {
 
                             {/* error message */}
                             <label className="label">
-                                <a href="/" className="label-text-alt link link-hover text-orange-600">{error}</a>
+                                <a href="/" className="text-orange-600 label-text-alt link link-hover">{error}</a>
                             </label>
                         </div>
-                        <div className="form-control mt-6">
+                        <div className="mt-6 form-control">
                             <button type="submit" className="btn btn-primary">
                                 Login
                             </button>
