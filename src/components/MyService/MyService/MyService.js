@@ -7,7 +7,7 @@ const MyService = () => {
     const [myservice, setMyservice] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+        fetch(`https://mankind-service-center-server.onrender.com/orders?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('msc-token')}`
             }
@@ -28,7 +28,7 @@ const MyService = () => {
     const handleDelete = (_id) => {
         const agree = window.confirm(`You want to delete ${_id}`);
         if (agree) {
-            fetch(`http://localhost:5000/orders/${_id}`, {
+            fetch(`https://mankind-service-center-server.onrender.com/orders/${_id}`, {
                 method: "DELETE",
             })
                 .then(res => res.json())

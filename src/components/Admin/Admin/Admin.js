@@ -13,7 +13,7 @@ const Admin = () => {
             img: img,
             details: details
         };
-        fetch(`http://localhost:5000/services`, {
+        fetch(`https://mankind-service-center-server.onrender.com/services`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

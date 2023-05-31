@@ -22,7 +22,7 @@ const Checkout = () => {
             message: message
         };
         //method
-        fetch('http://localhost:5000/orders', {
+        fetch('https://mankind-service-center-server.onrender.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

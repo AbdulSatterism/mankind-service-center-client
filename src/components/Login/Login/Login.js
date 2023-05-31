@@ -22,7 +22,7 @@ const Login = () => {
                 setError('');
 
                 //jwt get 
-                fetch(`http://localhost:5000/jwt`, {
+                fetch(`https://mankind-service-center-server.onrender.com/jwt`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
